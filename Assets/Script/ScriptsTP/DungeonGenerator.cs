@@ -40,7 +40,7 @@ public class DungeonGenerator : MonoBehaviour
         _board = pathGen.CreatePath(_dungeonSize, _board, _startPos);
 
         //Instanciar habitaciones (ESTO LO PONGO ACÁ O NO LO PONGO ACÁ) - La parte del for más que nada, la instanciación va en la factory claramente.
-       /* for (int i = 0; i < _dungeonSize.x; i++)
+        for (int i = 0; i < _dungeonSize.x; i++)
         {
             for (int j = 0; j < _dungeonSize.y; j++)
             {
@@ -48,19 +48,29 @@ public class DungeonGenerator : MonoBehaviour
 
                 if (currentCell.visited)
                 {
-                    int randomRoom = Random.Range(0, _rooms.Length);
+                    int randomRoom;
+                    Vector2 ubicacion = new Vector2(i, j);
 
-                    GameObject newRoom = Object.Instantiate(_rooms[randomRoom], new Vector3(i * _offset.x, 0f, -j * _offset.y), Quaternion.identity) as GameObject;
-                    RoomBehaviour rb = newRoom.GetComponent<RoomBehaviour>();
-                    rb.UpdateRoom(currentCell.status);
-
-                    newRoom.name += " " + i + "-" + j;
+                    if (i==0 && j == 0) //Habitación Inicial
+                    {
+                        
+                        randomRoom = 0;
+                    }
+                    else if (i== _dungeonSize.x - 1 && j == _dungeonSize.y -1 ) //Habitación Final
+                    {
+                        //Elijo un room random
+                        randomRoom = _rooms.Length - 1;
+                    }
+                    else
+                    {
+                        //Elijo un room random
+                        randomRoom = Random.Range(1, _rooms.Length - 1); 
+                    }
+                    //Instancio el Room
+                    roomFactory.CreateRoom(_rooms[randomRoom], _offset, ubicacion, currentCell);
                 }
             }
-        }*/
-
-        //Instantiate rooms
-        roomFactory.Create(_dungeonSize, _board, _rooms, _offset);
+        }       
     }
 
 /*TODO LIST*/
