@@ -6,4 +6,5 @@ public class Cell : MonoBehaviour
 {
     public bool visited = false;
     public bool[] status = new bool[4];
+    public bool[] wallStatus = new bool[4];
 }

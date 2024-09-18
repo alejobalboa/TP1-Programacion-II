@@ -4143,7 +4143,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: wall_hanging_lantern
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8448794549003941478, guid: 08d3694cc01944de7abd6f649cc10f95, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
